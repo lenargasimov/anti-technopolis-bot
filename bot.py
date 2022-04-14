@@ -47,7 +47,7 @@ class TimeSchedule():
             print('Сегодня нет именинников.')
             
 
-mas=[]
+mas = []
 if os.path.exists('data/dialog.txt'):
     f=open('data/dialog.txt', 'r', encoding='UTF-8')
     for x in f:
@@ -65,7 +65,7 @@ def answer(text):
             nn = 0
             for q in mas:
                 if('Q: ' in q):
-                    aa=(fuzz.token_sort_ratio(q.replace('Q: ',''), text))
+                    aa=(fuzz.token_sort_ratio(q.replace('Q: ', 'A: '), text))
                     if(aa > a and aa!= a):
                         a = aa
                         nn = n
@@ -81,8 +81,8 @@ def answer(text):
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
     time.sleep(10)
-    f=open('data/' + str(message.chat.id) + '_log.txt', 'a', encoding='UTF-8')
-    s=answer(message.text)
+    f = open('data/' + str(message.chat.id) + '_log.txt', 'a', encoding='UTF-8')
+    s = answer(message.text)
     f.write('Q: ' + message.text + '\n' + s +'\n')
     f.close()
     bot.send_message(message.chat.id, s.capitalize())
