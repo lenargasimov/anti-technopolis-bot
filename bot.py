@@ -85,7 +85,7 @@ def handle_text(message):
     s=answer(message.text)
     f.write('Q: ' + message.text + '\n' + s +'\n')
     f.close()
-    bot.send_message(message.chat.id, s.capitalize())
+    bot.send_message(message.chat.id, s.replace('A: ', '').capitalize())
 
 
 @bot.message_handler(regexp='Денис есть последний выпуск Технополиса?')
