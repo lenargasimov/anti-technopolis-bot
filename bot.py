@@ -49,24 +49,24 @@ class TimeSchedule():
 
 mas = []
 if os.path.exists('data/dialog.txt'):
-    f=open('data/dialog.txt', 'r', encoding='UTF-8')
+    f = open('data/dialog.txt', 'r', encoding='UTF-8')
     for x in f:
-        if(len(x.strip()) > 2):
+        if (len(x.strip()) > 2):
             mas.append(x.strip().lower())
     f.close()
 
 
 def answer(text):
     try:
-        text=text.lower().strip()
+        text = text.lower().strip()
         if os.path.exists('data/dialog.txt'):
             a = 0
             n = 0
             nn = 0
             for q in mas:
-                if('Q: ' in q):
-                    aa=(fuzz.token_sort_ratio(q.replace('Q: ', 'A: '), text))
-                    if(aa > a and aa!= a):
+                if ('Q=: ' in q):
+                    aa = (fuzz.token_sort_ratio(q.replace('Q: ', ''), text))
+                    if (aa > a and aa!= a):
                         a = aa
                         nn = n
                 n = n + 1
@@ -83,7 +83,7 @@ def handle_text(message):
     time.sleep(10)
     f = open('data/' + str(message.chat.id) + '_log.txt', 'a', encoding='UTF-8')
     s = answer(message.text)
-    f.write('Q: ' + message.text + '\n' + s +'\n')
+    f.write('Q: ' + message.text + '\n' + s + '\n')
     f.close()
     bot.send_message(message.chat.id, s.capitalize())
 
@@ -99,7 +99,7 @@ def reply_new_podcast(message):
     if today_date == post_date:
         bot.send_message(message.chat.id, f'Вы загнётесь как черви 😈 \n  Вот держи свежий эфир радио-шоу "ТЕХНОПОЛИС" \n \n {podcast_link}')
     else:
-        bot.send_message(message.chat.id, 'Витя ещё не выложил🖕🖕🖕️')
+        bot.send_message(message.chat.id, 'Витя ещё не выложил 😞😞😞')
 
 
 @bot.message_handler(content_types=["pinned_message", "photo", "voice", "audio", "video"])
@@ -109,8 +109,7 @@ def reply_genius(message):
                     'хуйня',
                     '👎👎👊👊👊',
                     'и че блять...',
-                    '👎👎👎👎😡😡😡😡😡👎👎',
-                     []]
+                    '👎👎👎👎😡😡😡😡😡👎👎',]
     bot.send_message(message.chat.id, random.choice(random_answer), reply_to_message_id=message.message_id)
 
 
