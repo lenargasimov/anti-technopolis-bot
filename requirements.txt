@@ -19,4 +19,3 @@ feedparser
 Flask
 schedule
 fuzzywuzzy
-python-Levenshtein
