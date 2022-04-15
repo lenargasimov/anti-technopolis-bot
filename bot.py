@@ -80,7 +80,6 @@ def answer(text):
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    time.sleep(10)
     f = open('data/' + str(message.chat.id) + '_log.txt', 'a', encoding='UTF-8')
     s = answer(message.text)
     f.write('u: ' + message.text + '\n' + s + '\n')
@@ -90,7 +89,6 @@ def handle_text(message):
 
 @bot.message_handler(regexp='Денис есть последний выпуск Технополиса?')
 def reply_new_podcast(message):
-    time.sleep(10)
     podcast_url = feedparser.parse("https://promodj.com/strogonov-radioshow-technopolis/podcast.xml")
     podcast_link = podcast_url.entries[0]['link']
     post_date = datetime.fromtimestamp(mktime(podcast_url.entries[0].published_parsed)).date()
@@ -104,7 +102,6 @@ def reply_new_podcast(message):
 
 @bot.message_handler(content_types=["pinned_message", "photo", "voice", "audio", "video"])
 def reply_genius(message):
-    time.sleep(10)
     random_answer = ['Хуйня',
                     'хуйня',
                     '👎👎👊👊👊',
