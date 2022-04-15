@@ -106,7 +106,8 @@ def reply_genius(message):
                     'хуйня',
                     '👎👎👊👊👊',
                     'и че блять...',
-                    '👎👎👎👎😡😡😡😡😡👎👎']
+                    '👎👎👎👎😡😡😡😡😡👎👎',
+                    'Вы загнётесь как черви']
     bot.send_message(message.chat.id, random.choice(random_answer), reply_to_message_id=message.message_id)
 
 
