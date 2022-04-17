@@ -11,7 +11,7 @@ from datetime import datetime
 from time import mktime
 from multiprocessing import *
 from telebot import types
-from fuzzywuzzy import fuzz
+# from fuzzywuzzy import fuzz
 
 TOKEN = os.environ['BOT_API_TOKEN']
 bot = telebot.TeleBot(TOKEN)
@@ -47,47 +47,47 @@ class TimeSchedule():
             print('Сегодня нет именинников.')
             
 
-mas = []
-if os.path.exists('data/dialog.txt'):
-    f = open('data/dialog.txt', 'r', encoding='UTF-8')
-    for x in f:
-        if (len(x.strip()) > 2):
-            mas.append(x.strip().lower())
-    f.close()
+# mas = []
+# if os.path.exists('data/dialog.txt'):
+#     f = open('data/dialog.txt', 'r', encoding='UTF-8')
+#     for x in f:
+#         if (len(x.strip()) > 2):
+#             mas.append(x.strip().lower())
+#     f.close()
+#
+#
+# def answer(text):
+#     try:
+#         text = text.lower().strip()
+#         if os.path.exists('data/dialog.txt'):
+#             a = 0
+#             n = 0
+#             nn = 0
+#             for q in mas:
+#                 if ('u: ' in q):
+#                     aa = (fuzz.token_sort_ratio(q.replace('u: ', ''), text))
+#                     if (aa > a and aa!= a):
+#                         a = aa
+#                         nn = n
+#                 n = n + 1
+#             s = mas[nn + 1]
+#             return s
+#         else:
+#             return 'Ошибка'
+#     except:
+#         return 'Ошибка'
+#
+#
+# @bot.message_handler(content_types=["text"])
+# def handle_text(message):
+#     f = open('data/' + str(message.chat.id) + '_log.txt', 'a', encoding='UTF-8')
+#     s = answer(message.text)
+#     f.write('u: ' + message.text + '\n' + s + '\n')
+#     f.close()
+#     bot.send_message(message.chat.id, s.capitalize())
 
 
-def answer(text):
-    try:
-        text = text.lower().strip()
-        if os.path.exists('data/dialog.txt'):
-            a = 0
-            n = 0
-            nn = 0
-            for q in mas:
-                if ('u: ' in q):
-                    aa = (fuzz.token_sort_ratio(q.replace('u: ', ''), text))
-                    if (aa > a and aa!= a):
-                        a = aa
-                        nn = n
-                n = n + 1
-            s = mas[nn + 1]
-            return s
-        else:
-            return 'Ошибка'
-    except:
-        return 'Ошибка'
-
-
-@bot.message_handler(content_types=["text"])
-def handle_text(message):
-    f = open('data/' + str(message.chat.id) + '_log.txt', 'a', encoding='UTF-8')
-    s = answer(message.text)
-    f.write('u: ' + message.text + '\n' + s + '\n')
-    f.close()
-    bot.send_message(message.chat.id, s.capitalize())
-
-
-@bot.message_handler(regexp='Денис есть последний выпуск Технополиса?')
+@bot.message_handler(regexp='Денис когда Витя выложит эфир?')
 def reply_new_podcast(message):
     podcast_url = feedparser.parse("https://promodj.com/strogonov-radioshow-technopolis/podcast.xml")
     podcast_link = podcast_url.entries[0]['link']
@@ -95,7 +95,7 @@ def reply_new_podcast(message):
     today_date = datetime.now().date()
 
     if today_date == post_date:
-        bot.send_message(message.chat.id, f'Вы загнётесь как черви 😈 \n  Вот держи свежий эфир радио-шоу "ТЕХНОПОЛИС" \n \n {podcast_link}')
+        bot.send_message(message.chat.id, f'Вот держи свежий эфир радио-шоу "ТЕХНОПОЛИС" \n \n {podcast_link}')
     else:
         bot.send_message(message.chat.id, 'Витя ещё не выложил 😞😞😞')
 
@@ -107,7 +107,8 @@ def reply_genius(message):
                     '👎👎👊👊👊',
                     'и че блять...',
                     '👎👎👎👎😡😡😡😡😡👎👎',
-                    'Вы загнётесь как черви']
+                    'Вы загнётесь как черви',
+                    'У тебя есть свободные подруги ? Дай Контакты']
     bot.send_message(message.chat.id, random.choice(random_answer), reply_to_message_id=message.message_id)
 
 
