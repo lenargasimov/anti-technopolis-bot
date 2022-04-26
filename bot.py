@@ -11,7 +11,7 @@ from datetime import datetime
 from time import mktime
 from multiprocessing import *
 from telebot import types
-# from fuzzywuzzy import fuzz
+
 
 TOKEN = os.environ['BOT_API_TOKEN']
 bot = telebot.TeleBot(TOKEN)
@@ -26,7 +26,7 @@ def start_process():
 
 class TimeSchedule():
     def start_schedule():
-        schedule.every().day.at("05:00").do(TimeSchedule.send_congratulations)
+        schedule.every().day.at("4:30").do(TimeSchedule.send_congratulations)
 
         while True:
             schedule.run_pending()
