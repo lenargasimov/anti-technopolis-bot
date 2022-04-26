@@ -42,7 +42,7 @@ class TimeSchedule():
         if today_tuple in birthdays_dict:
             birthday_person = birthdays_dict[today_tuple]
             name = birthday_person["name"]
-            bot.send_message(group_id, f"С Днём Рождения {name}! 🥳🥳🥳👋👋👋🔈🔈🔈🍺🍺🍺🍻🍻🍻😃😃😃")
+            bot.send_message(group_id, f"С Днём Рождения {name}! 🎈🎈🎈🎂🎂🎂🍾🍾🍾")
         else:
             print('Сегодня нет именинников.')
 
